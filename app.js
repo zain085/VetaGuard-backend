@@ -58,7 +58,13 @@ const apiLimiter = rateLimit({
 app.use("/api", apiLimiter);
 
 app.get("/api/health", (req, res) => {
-  res.json({ success: true, message: "VetaGuard API is running", data: { env: NODE_ENV } });
+  res.status(200).json({
+    success: true,
+    message: "VetaGuard API is running",
+    data: {
+      env: NODE_ENV,
+    },
+  });
 });
 
 app.use("/api/auth", authRoutes);
@@ -79,19 +85,7 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/contact", contactRoutes);
-// app.use("/api/vets", vetRoutes);
-// app.use("/api/shelters", shelterRoutes);
-// app.use("/api/shelter-pets", shelterPetRoutes);
-// app.use("/api/adoptions", adoptionRoutes);
-// app.use("/api/products", productRoutes);
-// app.use("/api/categories", categoryRoutes);
-// app.use("/api/cart", cartRoutes);
-// app.use("/api/reviews", reviewRoutes);
-// app.use("/api/articles", articleRoutes);
-// app.use("/api/reminders", reminderRoutes);
-// app.use("/api/notifications", notificationRoutes);
-// app.use("/api/contact", contactRoutes);
-// app.use("/api/admin", adminRoutes);
+
 
 app.use(notFound);
 app.use(errorHandler);
